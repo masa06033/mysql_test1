@@ -10,6 +10,8 @@ jobs:
         ports:
           - 3306:3306
         env:
+          MYSQL_DATABASE: test
+          MYSQL_ROOT_USER: root
           MYSQL_ROOT_PASSWORD: ${{ secrets.MYSQL_PASSWORD }}
         options: --health-cmd "mysqladmin ping -h localhost" --health-interval 20s --health-timeout 10s --health-retries 10
     steps:
@@ -18,7 +20,7 @@ jobs:
           mysql -h 127.0.0.1 --port 3306 -u root -p${{ secrets.MYSQL_PASSWORD }} -e "$(cat $(find ../../ -name hoge.sql))"
           
       - name: check version
-        run: echo 'FLUSH PRIVILEGES; select version(); show databases;' |  mysql -h 127.0.0.1 --port 3306 -u root -p${{ secrets.MYSQL_PASSWORD }}
+        run: echo 'select version(); show databases; show tables;' |  mysql -h 127.0.0.1 --port 3306 -u root -p${{ secrets.MYSQL_PASSWORD }}
         
       - name: exec sql
         run: mysql -h 127.0.0.1 --port 3306 -u root -p${{ secrets.MYSQL_PASSWORD }} | echo 'use mysql; show tables; create table user4 (id int, name varchar(10)); show tables; commit;'
