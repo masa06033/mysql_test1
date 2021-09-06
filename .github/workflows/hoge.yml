@@ -1,4 +1,7 @@
-  test:
+on: [push]
+
+jobs:
+  build:
     name: Test
     runs-on: ubuntu-latest
     services:
