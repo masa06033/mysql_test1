@@ -19,4 +19,7 @@ jobs:
           
       - name: check version
         run: echo 'select version();' |  mysql -h 127.0.0.1 --port 3306 -u root -p${{ secrets.MYSQL_PASSWORD }}
+        
+      - name: exec sql
+        run: echo 'use mysql; show tables;' |  mysql -h 127.0.0.1 --port 3306 -u root -p${{ secrets.MYSQL_PASSWORD }}
 
