@@ -1,3 +1,3 @@
 USE mysql;
 
-create table user3 (id int, name varchar(10));
+create table user2 (id int, name varchar(10));
