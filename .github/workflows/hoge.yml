@@ -15,7 +15,7 @@ jobs:
     steps:
       - name: exec hoge.sql
         run: |
-          mysql -h 127.0.0.1 --port 3306 -u root -p${{ secrets.MYSQL_PASSWORD }} -e "$(cat $(find ./ -name hoge.sql))"
+          mysql -h 127.0.0.1 --port 3306 -u root -p${{ secrets.MYSQL_PASSWORD }} -e "$(cat $(find ../../ -name hoge.sql))"
           
       - name: check version
         run: echo 'select version();' |  mysql -h 127.0.0.1 --port 3306 -u root -p${{ secrets.MYSQL_PASSWORD }}
