@@ -1,4 +1,4 @@
-USE hoge_test;
+USE mysql;
 
 CREATE TABLE users(
 id int,
