@@ -1,0 +1,15 @@
+  test:
+    name: Test
+    runs-on: ubuntu-latest
+    services:
+      mysql:
+        image: mysql:5.7
+        ports:
+          - 3306:3306
+        env:
+          MYSQL_ROOT_PASSWORD: hoge_password
+        options: --health-cmd "mysqladmin ping -h localhost" --health-interval 20s --health-timeout 10s --health-retries 10
+    steps:
+      - name: exec hoge.sql
+        run: |
+          mysql -h 127.0.0.1 --port 3306 -u root -phoge_password -e "$(cat $(find ./ -name hoge.sql))"
